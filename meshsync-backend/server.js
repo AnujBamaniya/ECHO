@@ -32,6 +32,9 @@ app.get('/api/alerts', async (req, res) => {
 });
 
 app.post('/api/alerts', async (req, res) => {
+  console.log("\n🚨 INCOMING SOS FROM HARDWARE MESH 🚨");
+  console.log(req.body);
+  
   try {
     const { type, lat, lng, details } = req.body;
     const ticketId = `ECHO-${Math.floor(1000 + Math.random() * 9000)}`;
@@ -47,5 +50,5 @@ app.post('/api/alerts', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = 5005; 
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -6,7 +6,7 @@ import { Users, Activity, Radio, AlertOctagon, Navigation, Crosshair } from 'luc
 import { io } from 'socket.io-client';
 import axios from 'axios';
 
-const SOCKET_URL = 'http://localhost:5000';
+const SOCKET_URL = 'http://localhost:5005';
 
 const typeColors = {
   medical: '#e11d48',
