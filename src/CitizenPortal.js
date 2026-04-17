@@ -1,16 +1,30 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, AlertTriangle, CheckCircle, WifiOff, Send } from 'lucide-react';
+import axios from 'axios';
 
 export default function CitizenPortal({ isOnline }) {
   const [status, setStatus] = useState('safe');
   const [details, setDetails] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    
+    try {
+      await axios.post('http://localhost:5000/api/alerts', {
+        type: status,
+        lat: 19.07 + (Math.random() * 0.02),
+        lng: 72.87 + (Math.random() * 0.02),
+        details: details || 'No details provided'
+      });
+      
+      setSubmitted(true);
+      setDetails('');
+      setTimeout(() => setSubmitted(false), 4000);
+    } catch (error) {
+      console.error("Failed to send alert", error);
+    }
   };
 
   return (
